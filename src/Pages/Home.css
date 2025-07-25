@@ -1,38 +1,232 @@
-.home-container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 2rem;
-  font-family: 'Poppins', sans-serif;
+/* src/pages/Home.css */
+
+/* --- Import a nice font from Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* --- Define a color palette using CSS variables --- */
+:root {
+  --primary-color: #2c6b2f; /* A nice, earthy green */
+  --secondary-color: #f0a500; /* A warm, vibrant accent (like marigold) */
+  --dark-color: #333;
+  --light-color: #f4f4f4;
+  --white-color: #ffffff;
+  --font-family: 'Poppins', sans-serif;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+.home-container {
+  font-family: var(--font-family);
+  color: var(--dark-color);
+  background-color: #fafafa; /* A very light grey background */
+}
+
+/* ========== Hero Section ========== */
 .hero {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  background-color: #f5fff5;
-  padding: 3rem 1rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+  color: var(--white-color);
+  /* Replace with a beautiful photo of your village */
+  background: url('/public/images/village-hero-bg.png') no-repeat center center/cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay to make text readable */
+}
+
+.hero-content {
+  position: relative; /* To be on top of the overlay */
+  z-index: 1;
+  padding: 20px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
   margin-bottom: 2rem;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  color: #027402;
+.cta-button {
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  padding: 12px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.cta-button:hover {
+  background-color: #ffb424; /* Lighter shade on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* ========== Shared Section Styles ========== */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: var(--secondary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+
+/* ========== Features Section ========== */
+.features-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: var(--white-color);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
   margin-bottom: 1rem;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  color: #444;
-  max-width: 700px;
-  margin: auto;
+.feature-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.calendar-section {
-  padding: 2rem 0;
+.feature-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  display: inline-block;
 }
 
-.calendar-section h2 {
-  text-align: center;
-  color: #017401;
-  margin-bottom: 1.5rem;
+/* ========== News & Calendar Section ========== */
+.news-calendar-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--light-color);
+}
+
+.latest-news, .calendar-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.news-item {
+  background: var(--white-color);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  border-left: 5px solid var(--secondary-color);
+}
+
+.news-date {
+  display: block;
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 0.5rem;
+}
+
+.news-title {
+  font-weight: 600;
+  color: var(--dark-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.news-title:hover {
+  color: var(--primary-color);
+}
+
+
+/* ========== Gallery Preview Section ========== */
+.gallery-preview-section {
+    padding: 4rem 2rem;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.gallery-image-wrapper {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.gallery-image:hover {
+    transform: scale(1.1);
+}
+
+
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .features-section, .news-calendar-section, .gallery-preview-section {
+    padding: 3rem 1rem;
+  }
 }

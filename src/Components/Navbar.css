@@ -1,102 +1,138 @@
+/* src/components/Navbar.css */
+
 .navbar {
+  background: #ffffff;
+  height: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, #017401, #5baa55); /* Fresh green gradient */
-  padding: 1rem 2rem;
-  color: white;
-  font-family: 'Poppins', sans-serif;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 1.1rem;
   position: sticky;
   top: 0;
   z-index: 999;
-}
-
-.navbar h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  letter-spacing: 0.5px;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 1.2rem;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar li {
-  transition: transform 0.2s;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.2s;
-}
-
-.navbar a:hover {
-  color: #ffe066; /* soft yellow highlight */
-  text-decoration: underline;
-}
-
-.navbar button {
-  background: white;
-  color: #017401;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.navbar button:hover {
-  background: #dfffe0;
-  transform: scale(1.05);
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  max-width: 1300px;
+  padding: 0 24px;
 }
 
-.hamburger {
-  display: none;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  color: white;
+.navbar-logo {
+  color: #2c6b2f;
+  justify-self: start;
   cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-    margin-left: auto;
-  }
+/* --- MOBILE STYLES START HERE --- */
 
-  .nav-links {
+/* This is the navigation menu (the <ul> element) */
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+  height: calc(100vh - 80px); /* Full screen height minus navbar */
+  position: absolute;
+  top: 80px;
+  left: -100%; /* Hides the menu off-screen by default */
+  opacity: 1;
+  transition: all 0.5s ease;
+  background: #242424;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* This class is added via JavaScript to show the menu */
+.nav-menu.active {
+  background: #242424;
+  left: 0; /* Slides the menu into view */
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 1rem;
+  width: 100%;
+  font-size: 1.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #f0a500;
+}
+
+.nav-link.active {
+  color: #f0a500;
+  font-weight: 600;
+}
+
+/* The hamburger icon itself */
+.menu-icon {
+  display: block; /* Display it on mobile */
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #333;
+}
+
+
+/* --- DESKTOP STYLES START HERE --- */
+/* This media query applies styles only for screens wider than 960px */
+
+@media screen and (min-width: 960px) {
+  /* Hide the hamburger icon on desktop */
+  .menu-icon {
     display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #017401;
-    margin-top: 0.5rem;
-    padding: 0.5rem 0;
-    border-radius: 8px;
   }
 
-  .nav-links.open {
-    display: flex;
+  /* Reset mobile menu styles to create the horizontal desktop menu */
+  .nav-menu {
+    position: static;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0;
+    width: auto;
+    height: 100%;
+    left: auto;
+    background: transparent;
   }
 
-  .nav-links li {
-    padding: 0.5rem 1rem;
-    width: 100%;
+  .nav-item {
+    height: 80px;
+    border-bottom: none;
   }
 
-  .nav-links a {
-    display: block;
-    width: 100%;
+  .nav-link {
+    color: #333;
+    padding: 0 1rem;
+    font-size: 1.1rem;
+    height: 100%;
+  }
+  
+  .nav-link:hover {
+    color: #2c6b2f;
+  }
+
+  /* Active link gets an underline on desktop */
+  .nav-link.active {
+    border-bottom: 3px solid #f0a500;
+    color: #333; /* Reset color to default for active link on desktop */
   }
 }

@@ -1,30 +1,37 @@
-import './App.css';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// ✅ Import Layout Components
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+
+// ✅ Import Page Components
 import Home from './Pages/Home';
 import About from './Pages/About';
-import AdminUpload from "./Pages/AdminUpload";
-import Schemes from './Pages/Schemes';
-import Notices from './Pages/Notices';
+import Directory from './Pages/Directory';
 import Gallery from './Pages/Gallery';
-import Contact from './Pages/Contact';
+import News from './Pages/News';
+import NewsDetail from './Pages/NewsDetail';
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <div className="content">
+
+      <main>
         <Routes>
+          {/* Static Pages */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/schemes" element={<Schemes />} />
-          <Route path="/notices" element={<Notices />} />
+          <Route path="/directory" element={<Directory />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/admin-upload" element={<AdminUpload />} />
+
+          {/* News and Dynamic Pages */}
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:slug" element={<NewsDetail />} />
         </Routes>
-      </div>
+      </main>
+
       <Footer />
     </Router>
   );
