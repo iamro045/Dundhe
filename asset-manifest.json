@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Dundhe/static/css/main.6300096c.css",
+    "main.css": "/Dundhe/static/css/main.b2ed7157.css",
     "main.js": "/Dundhe/static/js/main.0931cee0.js",
     "static/js/796.21849a0d.chunk.js": "/Dundhe/static/js/796.21849a0d.chunk.js",
     "static/js/165.13926a2b.chunk.js": "/Dundhe/static/js/165.13926a2b.chunk.js",
     "static/media/village-hero-bg.png": "/Dundhe/static/media/village-hero-bg.5374722cc39ec0d8e0fa.png",
     "static/media/sarpanch-placeholder.jpg": "/Dundhe/static/media/sarpanch-placeholder.c514cce731aedfd2efb0.jpg",
     "index.html": "/Dundhe/index.html",
-    "main.6300096c.css.map": "/Dundhe/static/css/main.6300096c.css.map",
+    "main.b2ed7157.css.map": "/Dundhe/static/css/main.b2ed7157.css.map",
     "main.0931cee0.js.map": "/Dundhe/static/js/main.0931cee0.js.map",
     "796.21849a0d.chunk.js.map": "/Dundhe/static/js/796.21849a0d.chunk.js.map",
     "165.13926a2b.chunk.js.map": "/Dundhe/static/js/165.13926a2b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6300096c.css",
+    "static/css/main.b2ed7157.css",
     "static/js/main.0931cee0.js"
   ]
 }
