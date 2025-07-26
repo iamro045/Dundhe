@@ -1,3 +1,5 @@
+// src/Pages/Gallery.js
+
 import React, { useState, useEffect } from 'react';
 import sanityClient from '../client.js';
 import Skeleton from 'react-loading-skeleton';
@@ -36,9 +38,9 @@ function Gallery() {
       .catch(console.error);
   }, []);
 
-  const filteredImages = filter === 'all' 
+  const filteredImages = images && filter === 'all' 
     ? images 
-    : images.filter(image => image.category === filter);
+    : images?.filter(image => image.category === filter);
 
   const renderSkeletons = () => (
     <div className="gallery-grid-full">
@@ -54,9 +56,9 @@ function Gallery() {
     <div className="gallery-page-container">
       <div className="page-header">
         <h1>📷 Photo Gallery</h1>
-        <p>A glimpse into the life and beauty of our village.</p>
+        <p>Explore the beauty and culture of our village.</p>
       </div>
-
+      
       <div className="filter-buttons">
         {categories.map((cat) => (
           <button 
@@ -68,7 +70,7 @@ function Gallery() {
           </button>
         ))}
       </div>
-
+      
       {!images ? renderSkeletons() : (
         <div className="gallery-grid-full">
           {filteredImages.map(image => (
