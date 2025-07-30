@@ -1,41 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Using Link for navigation
-
-// It's good practice to use an icon library like React Icons
-// To install: npm install react-icons
+import { Link as ScrollLink } from 'react-scroll'; // renamed Link for clarity
+import { Link as RouterLink } from 'react-router-dom'; // for actual routes like /gallery
 import { FaLandmark, FaImages, FaBullhorn } from 'react-icons/fa';
 
+import About from './About';
+import News from './News';
+import Directory from './Directory';
 import './Home.css';
 
-// --- Placeholder Data (You will replace this with real data later) ---
-const latestNews = [
-  { id: 1, title: 'Gram Sabha Meeting on July 28th', date: '2025-07-20', link: '/news/gram-sabha' },
-  { id: 2, title: 'Free Health Check-up Camp Announced', date: '2025-07-18', link: '/news/health-camp' },
-  { id: 3, title: 'New Water Pipeline Project Inaugurated', date: '2025-07-15', link: '/news/pipeline-project' },
-];
-
 const galleryImages = [
-  '/images/village-festival.jpg', // Replace with your actual image paths
+  '/images/village-festival.jpg',
   '/images/village-farms.jpg',
   '/images/village-temple.jpg',
   '/images/village-kids.jpg',
 ];
-// --------------------------------------------------------------------
-
 
 function Home() {
   return (
     <div className="home-container">
+
       {/* ========== Hero Section ========== */}
-      <header className="hero">
+      <header className="hero" id="home">
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1 className="hero-title">🌾दुंधे गावात आपले हार्दिक स्वागत आहे</h1>
-          <p className="hero-subtitle">
-            परंपरेशी निष्ठा राखत, भविष्याकडे वाटचाल.
-
-          </p>
-          <Link to="/about" className="cta-button">आमच्याबद्दल अधिक जाणून घ्या</Link>
+          <p className="hero-subtitle">परंपरेशी निष्ठा राखत, भविष्याकडे वाटचाल.</p>
+          <ScrollLink to="about" smooth={true} duration={500} offset={-70} className="cta-button">
+            आमच्याबद्दल अधिक जाणून घ्या
+          </ScrollLink>
         </div>
       </header>
 
@@ -43,55 +35,55 @@ function Home() {
       <section className="features-section">
         <div className="feature-card">
           <FaLandmark className="feature-icon" />
-          <h3 className="feature-title">Village Directory</h3>
-          <p>Find important contacts and services in our village.</p>
-          <Link to="/directory" className="feature-link">Go to Directory →</Link>
+          <h3 className="feature-title">गाव निर्देशिका</h3>
+          <p>आपल्या गावातील महत्त्वाच्या स्थळांची व संपर्कांची माहिती एका ठिकाणी.</p>
+          <ScrollLink to="directory" smooth={true} duration={500} offset={-70} className="feature-link">
+            निर्देशिकेकडे जा →
+          </ScrollLink>
         </div>
         <div className="feature-card">
           <FaBullhorn className="feature-icon" />
-          <h3 className="feature-title">Announcements</h3>
-          <p>Stay updated with the latest news from the Gram Panchayat.</p>
-          <Link to="/news" className="feature-link">View All News →</Link>
+          <h3 className="feature-title">सूचना / घोषणा</h3>
+          <p>गावातील महत्त्वाच्या घटना, कार्यक्रम, किंवा नवीन उपक्रमांची माहिती येथे प्रसिद्ध केली जाईल.</p>
+          <ScrollLink to="news" smooth={true} duration={500} offset={-70} className="feature-link">
+            सर्व सूचना पहा →
+          </ScrollLink>
         </div>
         <div className="feature-card">
           <FaImages className="feature-icon" />
-          <h3 className="feature-title">Photo Gallery</h3>
-          <p>Explore the beauty and culture of our village through photos.</p>
-          <Link to="/gallery" className="feature-link">Visit Gallery →</Link>
+          <h3 className="feature-title">गावाचा फोटो गॅलरी</h3>
+          <p>गावातील विविध कार्यक्रम, उत्सव, आणि ऐतिहासिक क्षणांचे छायाचित्र येथे पाहायला मिळतील.</p>
+          <RouterLink to="/gallery" className="feature-link">गॅलरी पहा →</RouterLink>
         </div>
       </section>
 
-      {/* ========== News & Calendar Split Section ========== */}
-      <section className="news-calendar-section">
-        <div className="latest-news">
-          <h2 className="section-title">📰 Latest News</h2>
-          <div className="news-list">
-            {latestNews.map(item => (
-              <div key={item.id} className="news-item">
-                <span className="news-date">{item.date}</span>
-                <Link to={item.link} className="news-title">{item.title}</Link>
-              </div>
-            ))}
-          </div>
-        </div>
-
+      {/* ========== Section Components ========== */}
+      <section id="about" style={{ padding: '80px 0' }}>
+        <About />
       </section>
-      
+
+      <section id="news" style={{ padding: '80px 0' }}>
+        <News />
+      </section>
+
+      <section id="directory" style={{ padding: '80px 0' }}>
+        <Directory />
+      </section>
+
       {/* ========== Gallery Preview Section ========== */}
       <section className="gallery-preview-section">
-         <h2 className="section-title">Our Village in Pictures</h2>
-         <div className="gallery-grid">
-            {galleryImages.map((src, index) => (
-                <div key={index} className="gallery-image-wrapper">
-                    <img src={src} alt={`Village life ${index + 1}`} className="gallery-image"/>
-                </div>
-            ))}
-         </div>
-         <div style={{textAlign: 'center', marginTop: '2rem'}}>
-            <Link to="/gallery" className="cta-button">View Full Gallery</Link>
-         </div>
+        <h2 className="section-title">Our Village in Pictures</h2>
+        <div className="gallery-grid">
+          {galleryImages.map((src, index) => (
+            <div key={index} className="gallery-image-wrapper">
+              <img src={src} alt={`Village life ${index + 1}`} className="gallery-image" />
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <RouterLink to="/gallery" className="cta-button">View Full Gallery</RouterLink>
+        </div>
       </section>
-
     </div>
   );
 }

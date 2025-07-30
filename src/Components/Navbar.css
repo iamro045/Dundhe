@@ -1,5 +1,6 @@
 /* src/components/Navbar.css */
 
+/* ========== COMMON NAVBAR STYLES ========== */
 .navbar {
   background: #ffffff;
   height: 80px;
@@ -10,7 +11,7 @@
   position: sticky;
   top: 0;
   z-index: 999;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-container {
@@ -28,23 +29,22 @@
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-/* --- MOBILE STYLES START HERE --- */
-
-/* This is the navigation menu (the <ul> element) */
+/* ========== MOBILE MENU STYLES ========== */
 .nav-menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1.5rem;
   width: 100%;
-  height: calc(100vh - 80px); /* Full screen height minus navbar */
+  height: calc(100vh - 80px);
   position: absolute;
   top: 80px;
-  left: -100%; /* Hides the menu off-screen by default */
+  left: -100%;
   opacity: 1;
   transition: all 0.5s ease;
   background: #242424;
@@ -53,16 +53,16 @@
   margin: 0;
 }
 
-/* This class is added via JavaScript to show the menu */
 .nav-menu.active {
-  background: #242424;
-  left: 0; /* Slides the menu into view */
+  left: 0;
 }
 
+/* Menu Items */
 .nav-item {
   width: 100%;
 }
 
+/* ScrollLink or NavLink */
 .nav-link {
   color: #fff;
   display: flex;
@@ -79,30 +79,28 @@
   color: #f0a500;
 }
 
+/* Highlight the active scroll section */
 .nav-link.active {
   color: #f0a500;
   font-weight: 600;
+  border-left: 4px solid #f0a500;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* The hamburger icon itself */
+/* Hamburger Icon */
 .menu-icon {
-  display: block; /* Display it on mobile */
+  display: block;
   font-size: 1.8rem;
   cursor: pointer;
   color: #333;
 }
 
-
-/* --- DESKTOP STYLES START HERE --- */
-/* This media query applies styles only for screens wider than 960px */
-
+/* ========== DESKTOP MENU STYLES ========== */
 @media screen and (min-width: 960px) {
-  /* Hide the hamburger icon on desktop */
   .menu-icon {
     display: none;
   }
 
-  /* Reset mobile menu styles to create the horizontal desktop menu */
   .nav-menu {
     position: static;
     flex-direction: row;
@@ -110,29 +108,32 @@
     gap: 0;
     width: auto;
     height: 100%;
-    left: auto;
     background: transparent;
   }
 
   .nav-item {
     height: 80px;
-    border-bottom: none;
   }
 
   .nav-link {
     color: #333;
-    padding: 0 1rem;
+    padding: 0 1.2rem;
     font-size: 1.1rem;
     height: 100%;
-  }
-  
-  .nav-link:hover {
-    color: #2c6b2f;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease-in-out;
   }
 
-  /* Active link gets an underline on desktop */
-  .nav-link.active {
+  .nav-link:hover {
+    color: #2c6b2f;
     border-bottom: 3px solid #f0a500;
-    color: #333; /* Reset color to default for active link on desktop */
+  }
+
+  .nav-link.active {
+    color: #2c6b2f;
+    border-bottom: 3px solid #f0a500;
+    background: none;
   }
 }

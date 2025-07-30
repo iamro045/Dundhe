@@ -1,59 +1,83 @@
 // src/components/Navbar.js
 
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Import hamburger/close icons
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll'; // For scroll-based links
+import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
 
 function Navbar() {
-  // This state will track if the mobile menu is open or not
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  // This function toggles the state
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  
-  // This function closes the menu when a link is clicked
   const closeMobileMenu = () => setIsMenuOpen(false);
+  const location = useLocation();
+
+  // Helper to render scroll link only on home page
+  const isHome = location.pathname === '/';
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* The Logo, which also closes the menu on click */}
-        <NavLink to="/" className="navbar-logo" onClick={closeMobileMenu}>
+        {/* Logo */}
+        <RouterLink to="/" className="navbar-logo" onClick={closeMobileMenu}>
           🌾 दुंधे गाव
-        </NavLink>
-        
-        {/* The Hamburger Icon that shows on mobile */}
+        </RouterLink>
+
+        {/* Mobile menu toggle */}
         <div className="menu-icon" onClick={toggleMenu}>
           {isMenuOpen ? <FaTimes /> : <FaBars />}
         </div>
-        
-        {/* Add a conditional 'active' class to the menu */}
+
+        {/* Navigation Links */}
         <ul className={isMenuOpen ? 'nav-menu active' : 'nav-menu'}>
           <li className="nav-item">
-            <NavLink to="/" className="nav-link" onClick={closeMobileMenu} end>
+            <RouterLink to="/" className="nav-link" onClick={closeMobileMenu}>
               Home
-            </NavLink>
+            </RouterLink>
           </li>
+
+          {isHome ? (
+            <>
+              <li className="nav-item">
+                <ScrollLink to="about" smooth={true} duration={500} offset={-70} className="nav-link" onClick={closeMobileMenu}>
+                  About Us
+                </ScrollLink>
+              </li>
+              <li className="nav-item">
+                <ScrollLink to="directory" smooth={true} duration={500} offset={-70} className="nav-link" onClick={closeMobileMenu}>
+                  Directory
+                </ScrollLink>
+              </li>
+              <li className="nav-item">
+                <ScrollLink to="news" smooth={true} duration={500} offset={-70} className="nav-link" onClick={closeMobileMenu}>
+                  News
+                </ScrollLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="nav-item">
+                <RouterLink to="/" className="nav-link" onClick={closeMobileMenu}>
+                  About Us
+                </RouterLink>
+              </li>
+              <li className="nav-item">
+                <RouterLink to="/" className="nav-link" onClick={closeMobileMenu}>
+                  Directory
+                </RouterLink>
+              </li>
+              <li className="nav-item">
+                <RouterLink to="/" className="nav-link" onClick={closeMobileMenu}>
+                  News
+                </RouterLink>
+              </li>
+            </>
+          )}
+
           <li className="nav-item">
-            <NavLink to="/about" className="nav-link" onClick={closeMobileMenu}>
-              About Us
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/directory" className="nav-link" onClick={closeMobileMenu}>
-              Directory
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/gallery" className="nav-link" onClick={closeMobileMenu}>
+            <RouterLink to="/gallery" className="nav-link" onClick={closeMobileMenu}>
               Gallery
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/news" className="nav-link" onClick={closeMobileMenu}>
-              News
-            </NavLink>
+            </RouterLink>
           </li>
         </ul>
       </div>
