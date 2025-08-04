@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaPhone, FaEnvelope } from 'react-icons/fa';
-import './Footer.css'; // We'll create this file
+import './Footer.css';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,20 +14,22 @@ function Footer() {
           <h3 className="footer-logo">🌾 दुंधे गाव</h3>
           <p>
             आपल्या वारशाचे जतन करत, प्रगतीच्या दिशेने वाटचाल — समृद्ध समाजासाठी आमची बांधिलकी.
-
           </p>
         </div>
         <div className="footer-section links">
-          <h3>Quick Links</h3>
+          <h3>जलद लिंक्स (Quick Links)</h3>
           <ul>
-            <li><Link to="/about">About Us</Link></li>
-            <li><Link to="/news">News & Events</Link></li>
-            <li><Link to="/directory">Village Directory</Link></li>
-            <li><Link to="/gallery">Photo Gallery</Link></li>
+            <li><Link to="/">मुख्यपृष्ठ (Home)</Link></li>
+            <li><Link to="/#about">आमच्याबद्दल (About)</Link></li>
+            <li><Link to="/#directory">गाव निर्देशिका (Directory)</Link></li> {/* <-- CORRECTED: Added this line */}
+            <li><Link to="/gallery">फोटो गॅलरी (Gallery)</Link></li>
+            <li><Link to="/panchayat">ग्रामपंचायत</Link></li>
+            <li><Link to="/society">सहकारी संस्था</Link></li>
+            <li><Link to="/csc">CSC केंद्र</Link></li>
           </ul>
         </div>
         <div className="footer-section contact">
-          <h3>Contact Us</h3>
+          <h3>संपर्क (Contact Us)</h3>
           <span><FaPhone /> 0123456789 (ग्रामपंचायत कार्यालय)</span>
           <span><FaEnvelope /> contact@dundhe.gov.in</span>
           <p>ग्रामपंचायत दुंधे, <br/>तालुका मालेगाव, जिल्हा नाशिक, महाराष्ट्र, भारत</p>

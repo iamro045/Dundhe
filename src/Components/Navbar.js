@@ -1,83 +1,99 @@
 // src/components/Navbar.js
 
 import React, { useState } from 'react';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { Link as ScrollLink } from 'react-scroll'; // For scroll-based links
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { scroller } from 'react-scroll';
+import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
 import './Navbar.css';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const closeMobileMenu = () => setIsMenuOpen(false);
-  const location = useLocation();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate(); // Hook to programmatically navigate
 
-  // Helper to render scroll link only on home page
-  const isHome = location.pathname === '/';
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
+
+  // This is the key function to handle all scroll links
+  const handleScrollLink = (section) => {
+    closeMobileMenu(); // Close the menu first
+
+    // Navigate to the homepage
+    navigate('/');
+
+    // Use a short timeout to allow the homepage to render before scrolling
+    setTimeout(() => {
+      scroller.scrollTo(section, {
+        spy: true,
+        smooth: true,
+        duration: 500,
+        offset: -80, // Adjusts for your 80px navbar height
+      });
+    }, 100);
+  };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        {/* Logo */}
-        <RouterLink to="/" className="navbar-logo" onClick={closeMobileMenu}>
+        <NavLink to="/" className="navbar-logo" onClick={closeMobileMenu}>
           🌾 दुंधे गाव
-        </RouterLink>
+        </NavLink>
 
-        {/* Mobile menu toggle */}
         <div className="menu-icon" onClick={toggleMenu}>
           {isMenuOpen ? <FaTimes /> : <FaBars />}
         </div>
 
-        {/* Navigation Links */}
         <ul className={isMenuOpen ? 'nav-menu active' : 'nav-menu'}>
+          {/* Use the handleScrollLink function for all scrollable sections */}
           <li className="nav-item">
-            <RouterLink to="/" className="nav-link" onClick={closeMobileMenu}>
-              Home
-            </RouterLink>
+            <span className="nav-link" onClick={() => handleScrollLink('home')}>
+              मुख्यपृष्ठ
+            </span>
+          </li>
+          <li className="nav-item">
+            <span className="nav-link" onClick={() => handleScrollLink('about')}>
+              आमच्याबद्दल
+            </span>
+          </li>
+          <li className="nav-item">
+            <span className="nav-link" onClick={() => handleScrollLink('directory')}>
+              निर्देशिका
+            </span>
+          </li>
+           <li className="nav-item">
+            <span className="nav-link" onClick={() => handleScrollLink('news')}>
+              बातम्या
+            </span>
           </li>
 
-          {isHome ? (
-            <>
-              <li className="nav-item">
-                <ScrollLink to="about" smooth={true} duration={500} offset={-70} className="nav-link" onClick={closeMobileMenu}>
-                  About Us
-                </ScrollLink>
-              </li>
-              <li className="nav-item">
-                <ScrollLink to="directory" smooth={true} duration={500} offset={-70} className="nav-link" onClick={closeMobileMenu}>
-                  Directory
-                </ScrollLink>
-              </li>
-              <li className="nav-item">
-                <ScrollLink to="news" smooth={true} duration={500} offset={-70} className="nav-link" onClick={closeMobileMenu}>
-                  News
-                </ScrollLink>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="nav-item">
-                <RouterLink to="/" className="nav-link" onClick={closeMobileMenu}>
-                  About Us
-                </RouterLink>
-              </li>
-              <li className="nav-item">
-                <RouterLink to="/" className="nav-link" onClick={closeMobileMenu}>
-                  Directory
-                </RouterLink>
-              </li>
-              <li className="nav-item">
-                <RouterLink to="/" className="nav-link" onClick={closeMobileMenu}>
-                  News
-                </RouterLink>
-              </li>
-            </>
-          )}
+          {/* Services Dropdown - This uses standard NavLinks */}
+          <li
+            className="nav-item dropdown"
+            onMouseEnter={() => !isMenuOpen && setIsDropdownOpen(true)}
+            onMouseLeave={() => !isMenuOpen && setIsDropdownOpen(false)}
+          >
+            <div className="nav-link" onClick={toggleDropdown}>
+              सेवा <FaChevronDown className="dropdown-icon" />
+            </div>
+            {(isDropdownOpen || isMenuOpen) && (
+              <ul className={isMenuOpen ? "dropdown-menu mobile" : "dropdown-menu"}>
+                <li><NavLink to="/panchayat" className="dropdown-link" onClick={closeMobileMenu}>ग्रामपंचायत</NavLink></li>
+                <li><NavLink to="/society" className="dropdown-link" onClick={closeMobileMenu}>सहकारी संस्था</NavLink></li>
+                <li><NavLink to="/csc" className="dropdown-link" onClick={closeMobileMenu}>CSC केंद्र</NavLink></li>
+              </ul>
+            )}
+          </li>
 
+          {/* Gallery Link - This uses a standard NavLink */}
           <li className="nav-item">
-            <RouterLink to="/gallery" className="nav-link" onClick={closeMobileMenu}>
-              Gallery
-            </RouterLink>
+            <NavLink to="/gallery" className="nav-link" onClick={closeMobileMenu}>
+              गॅलरी
+            </NavLink>
           </li>
         </ul>
       </div>

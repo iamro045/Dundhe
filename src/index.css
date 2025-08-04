@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Add this to the TOP of src/index.css */
+
+/* This is a modern CSS reset. It tells every element to calculate its
+  width and height including padding and borders, which prevents almost
+  all unexpected overflow issues.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* This ensures the body itself doesn't have any default margin and
+  that it hides any final overflow attempts.
+*/
+body {
+  margin: 0;
+  overflow-x: hidden;
+}

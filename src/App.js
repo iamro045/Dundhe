@@ -1,3 +1,5 @@
+// src/App.js
+
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -6,10 +8,13 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import ScrollToTop from './Components/ScrollToTop';
 
-// Pages
+// Page Components
 import Home from './Pages/Home';
 import Gallery from './Pages/Gallery';
 import NewsDetail from './Pages/NewsDetail';
+import Panchayat from './Pages/Panchayat'; // <-- NEW
+import Society from './Pages/Society';     // <-- NEW
+import Csc from './Pages/Csc';             // <-- NEW
 
 function App() {
   return (
@@ -19,14 +24,18 @@ function App() {
 
       <main>
         <Routes>
-          {/* Home Page - contains About, Directory, News as sections */}
+          {/* Main Homepage Route */}
           <Route path="/" element={<Home />} />
 
-          {/* Gallery Page (separate route) */}
+          {/* Other Main Pages */}
           <Route path="/gallery" element={<Gallery />} />
-
-          {/* Dynamic News Detail Page */}
           <Route path="/news/:slug" element={<NewsDetail />} />
+
+          {/* Routes for the Three New Feature Pages */}
+          <Route path="/panchayat" element={<Panchayat />} />
+          <Route path="/society" element={<Society />} />
+          <Route path="/csc" element={<Csc />} />
+          
         </Routes>
       </main>
 

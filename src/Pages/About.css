@@ -72,6 +72,16 @@
   height: 100%;
 }
 
+.about-section p {
+  line-height: 1.9;
+  margin-bottom: 1.4em;
+  text-align: justify;
+}
+
+.about-section h2 {
+  margin-bottom: 0.6em;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .leadership-section {

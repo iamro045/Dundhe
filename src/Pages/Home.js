@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link as ScrollLink } from 'react-scroll'; // renamed Link for clarity
-import { Link as RouterLink } from 'react-router-dom'; // for actual routes like /gallery
-import { FaLandmark, FaImages, FaBullhorn } from 'react-icons/fa';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link as RouterLink } from 'react-router-dom';
+import { FaLandmark, FaImages, FaBullhorn, FaBuilding, FaUsers, FaLaptop } from 'react-icons/fa';
+import { Element } from 'react-scroll';
 
 import About from './About';
-import News from './News';
 import Directory from './Directory';
+
 import './Home.css';
+import News from '../Pages/News';
 
 const galleryImages = [
   '/images/village-festival.jpg',
@@ -19,7 +21,6 @@ function Home() {
   return (
     <div className="home-container">
 
-      {/* ========== Hero Section ========== */}
       <header className="hero" id="home">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -31,8 +32,28 @@ function Home() {
         </div>
       </header>
 
-      {/* ========== Features Section ========== */}
       <section className="features-section">
+        {/* These links still scroll down the homepage */}
+
+        <div className="feature-card">
+          <FaBuilding className="feature-icon" />
+          <h3 className="feature-title">ग्रामपंचायत</h3>
+          <p>ग्रामपंचायत सदस्य, योजना आणि कामकाजाबद्दल माहिती मिळवा.</p>
+          <RouterLink to="/panchayat" className="feature-link">अधिक माहिती →</RouterLink>
+        </div>
+        <div className="feature-card">
+          <FaUsers className="feature-icon" />
+          <h3 className="feature-title">सहकारी संस्था</h3>
+          <p>गावातील विविध कार्यकारी सहकारी सोसायट्यांची माहिती.</p>
+          <RouterLink to="/society" className="feature-link">अधिक माहिती →</RouterLink>
+        </div>
+        <div className="feature-card">
+          <FaLaptop className="feature-icon" />
+          <h3 className="feature-title">CSC केंद्र</h3>
+          <p>आपले सरकार सेवा केंद्र (CSC) येथे उपलब्ध असलेल्या सेवांची माहिती.</p>
+          <RouterLink to="/csc" className="feature-link">अधिक माहिती →</RouterLink>
+        </div>
+
         <div className="feature-card">
           <FaLandmark className="feature-icon" />
           <h3 className="feature-title">गाव निर्देशिका</h3>
@@ -49,28 +70,32 @@ function Home() {
             सर्व सूचना पहा →
           </ScrollLink>
         </div>
+
+        {/* These links now go to separate pages */}
         <div className="feature-card">
           <FaImages className="feature-icon" />
           <h3 className="feature-title">गावाचा फोटो गॅलरी</h3>
           <p>गावातील विविध कार्यक्रम, उत्सव, आणि ऐतिहासिक क्षणांचे छायाचित्र येथे पाहायला मिळतील.</p>
           <RouterLink to="/gallery" className="feature-link">गॅलरी पहा →</RouterLink>
         </div>
+
       </section>
 
-      {/* ========== Section Components ========== */}
-      <section id="about" style={{ padding: '80px 0' }}>
+      {/* Sections remaining on the homepage */}
+      <Element name="about">
         <About />
-      </section>
+      </Element>
 
-      <section id="news" style={{ padding: '80px 0' }}>
+      <Element name="news">
         <News />
-      </section>
+      </Element>
 
-      <section id="directory" style={{ padding: '80px 0' }}>
+      <Element name="directory">
         <Directory />
-      </section>
+      </Element>
 
-      {/* ========== Gallery Preview Section ========== */}
+      {/* The static content for Panchayat, Society, and CSC has been removed from here */}
+
       <section className="gallery-preview-section">
         <h2 className="section-title">Our Village in Pictures</h2>
         <div className="gallery-grid">
@@ -84,6 +109,7 @@ function Home() {
           <RouterLink to="/gallery" className="cta-button">View Full Gallery</RouterLink>
         </div>
       </section>
+
     </div>
   );
 }
