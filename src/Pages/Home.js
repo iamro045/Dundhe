@@ -10,12 +10,6 @@ import Directory from './Directory';
 import './Home.css';
 import News from '../Pages/News';
 
-const galleryImages = [
-  '/images/village-festival.jpg',
-  '/images/village-farms.jpg',
-  '/images/village-temple.jpg',
-  '/images/village-kids.jpg',
-];
 
 function Home() {
   return (
@@ -96,19 +90,6 @@ function Home() {
 
       {/* The static content for Panchayat, Society, and CSC has been removed from here */}
 
-      <section className="gallery-preview-section">
-        <h2 className="section-title">Our Village in Pictures</h2>
-        <div className="gallery-grid">
-          {galleryImages.map((src, index) => (
-            <div key={index} className="gallery-image-wrapper">
-              <img src={src} alt={`Village life ${index + 1}`} className="gallery-image" />
-            </div>
-          ))}
-        </div>
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-          <RouterLink to="/gallery" className="cta-button">View Full Gallery</RouterLink>
-        </div>
-      </section>
 
     </div>
   );
